@@ -2,11 +2,16 @@
 package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  *
  * @author telmo
  */
+
+@Entity
+@DiscriminatorValue("C")
 public class Cliente extends Pessoa{
     
     private String observacoes;

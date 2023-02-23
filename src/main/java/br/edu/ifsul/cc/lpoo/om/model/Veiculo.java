@@ -1,17 +1,36 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- *
  * @author telmo
  */
-public class Veiculo {
+
+@Entity//indica que a classe Veicula será gerenciada
+//pelo jpa/hibernate.
+@Table(name = "tb_veiculo")//defini o formato do 
+//armazenamento (em tabela).
+public class Veiculo implements Serializable {
     
+    @Id//definicao do atributo que será a chave primaria
     private String placa;
+    
+    @Column(nullable = false, length = 100)//coluna obrigatorio e de 100.
     private String modelo;
+    
+    @Column(nullable = false)//coluna obrigatoria
     private Integer ano;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIMESTAMP) //precisao da data
     private Calendar data_ultimo_servico;
     
     public Veiculo(){

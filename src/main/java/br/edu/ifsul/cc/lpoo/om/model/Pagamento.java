@@ -2,6 +2,11 @@
 package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -14,7 +19,13 @@ public class Pagamento {
     private Calendar data_vencimento;
     private Calendar data_pagamento;
     private Float valor;
-    private Servico servico;
+    
+    @ManyToOne
+    @JoinColumn(name = "servico_id", nullable = false)
+    private Servico servico;//agregacao por composicao.
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;
     
     public Pagamento(){

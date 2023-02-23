@@ -1,14 +1,29 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  *
  * @author telmo
  */
-public abstract class Pessoa {
+
+@Entity
+@Table(name = "tb_pessoa")
+//definicao da herança e estratégia
+@Inheritance(strategy = InheritanceType.JOINED)
+//definicao da coluna discriminatoria
+@DiscriminatorColumn(name = "tipo")
+public abstract class Pessoa implements Serializable{
     
+    @Id
     private String cpf;
     private String nome;
     private String senha;

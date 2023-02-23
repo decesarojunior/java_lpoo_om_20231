@@ -3,17 +3,32 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author telmo
  */
-public class Funcionario {
+
+@Entity
+@DiscriminatorValue("F")
+public class Funcionario extends Pessoa {
     
     private String numero_ctps;
     private Calendar data_admissao;
     private Calendar data_demissao;
     private Cargo cargo;
+    
+    @ManyToMany
+    @JoinTable(name = "tb_funcionario_curso", 
+            joinColumns = {
+                @JoinColumn(name = "pessoa_cpf")}, //agregacao, vai gerar uma tabela associativa.
+            inverseJoinColumns = {
+                @JoinColumn(name = "curso_id")})
     private List<Curso> cursos;
     
     public Funcionario(){

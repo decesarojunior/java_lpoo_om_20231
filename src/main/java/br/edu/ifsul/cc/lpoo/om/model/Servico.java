@@ -3,11 +3,19 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Prof. Telmo Jr
  */
+
+@Entity//indica que a classe será gerenciada
+//pelo jpa/hibernate.
+@Table(name = "tb_servico")//defini o formato do 
+//armazenamento (em tabela).
 public class Servico {
     
     private Integer id;
@@ -15,9 +23,16 @@ public class Servico {
     private Calendar data_inicio;
     private Calendar data_fim;
     private Equipe equipe;
+    
+    
     private Orcamento orcamento;
     private StatusServico status;
+    
+    
+    //agregacao por composicao.
+    @OneToMany(mappedBy = "servico")//mappedBy deve apontar para a referencia de jogador dentro de Compra.
     private List<Pagamento> pagamentos;
+     
     
     public Servico(){
         

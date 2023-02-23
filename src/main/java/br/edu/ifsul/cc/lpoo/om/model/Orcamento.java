@@ -3,18 +3,32 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author telmo
  */
+
+@Entity//indica que a classe será gerenciada
+//pelo jpa/hibernate.
+@Table(name = "tb_orcamento")//defini o formato do 
+//armazenamento (em tabela).
 public class Orcamento {
     
     private Integer id;
     private String observacoes;
     private Calendar data;
     private Cliente cliente;
+    
+    //associacao
+    @ManyToOne
+    @JoinColumn(name = "veiculo_placa", nullable = false)
     private Veiculo veiculo;
+    
     private List<Peca> peca;
     private List<MaoObra> maoObra;
     
