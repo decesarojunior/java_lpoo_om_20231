@@ -1,6 +1,7 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import javax.persistence.TemporalType;
 //pelo jpa/hibernate.
 @Table(name = "tb_servico")//defini o formato do 
 //armazenamento (em tabela).
-public class Servico {
+public class Servico implements Serializable{
     
     @Id
     @SequenceGenerator(name = "seq_servico", sequenceName = "seq_servico_id", allocationSize = 1)

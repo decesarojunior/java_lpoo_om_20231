@@ -30,7 +30,7 @@ public class Equipe {
     @Column(nullable = false, length = 200)
     private String nome;
     
-    @Column(nullable = false, length = 200)
+    @Column(nullable = true, length = 200)
     private String especialidades;
     
     @ManyToMany

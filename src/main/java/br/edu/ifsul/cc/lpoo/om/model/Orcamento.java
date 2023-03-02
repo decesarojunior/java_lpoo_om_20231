@@ -1,6 +1,7 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import javax.persistence.TemporalType;
 //pelo jpa/hibernate.
 @Table(name = "tb_orcamento")//defini o formato do 
 //armazenamento (em tabela).
-public class Orcamento {
+public class Orcamento implements Serializable {
     
     @Id
     @SequenceGenerator(name = "seq_orcamento", sequenceName = "seq_orcamento_id", allocationSize = 1)
@@ -164,6 +165,20 @@ public class Orcamento {
      */
     public void setMaoObra(List<MaoObra> maoObra) {
         this.maoObra = maoObra;
+    }
+
+    /**
+     * @return the valorTotal
+     */
+    public Float getValorTotal() {
+        return valorTotal;
+    }
+
+    /**
+     * @param valorTotal the valorTotal to set
+     */
+    public void setValorTotal(Float valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
     

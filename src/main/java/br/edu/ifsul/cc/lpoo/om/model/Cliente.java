@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "tb_cliente")
 public class Cliente extends Pessoa{
     
-    @Column(nullable = false, length = 200)
+    @Column(nullable = true, length = 200)
     private String observacoes;
     
     @ManyToMany
