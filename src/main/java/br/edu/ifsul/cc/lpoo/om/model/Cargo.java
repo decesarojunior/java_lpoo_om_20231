@@ -1,12 +1,28 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * @author telmo
  */
+
+@Entity
+@Table(name = "tb_cargo")
 public class Cargo {
     
+    @Id
+    @SequenceGenerator(name = "seq_cargo", sequenceName = "seq_cargo_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_cargo", strategy = GenerationType.SEQUENCE) 
     private Integer id;
+    
+    @Column(nullable = false, length = 200)
     private String descricao;
     
     public Cargo(){

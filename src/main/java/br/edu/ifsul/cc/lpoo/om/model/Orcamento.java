@@ -3,13 +3,21 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- *
  * @author telmo
  */
 
@@ -19,9 +27,20 @@ import javax.persistence.Table;
 //armazenamento (em tabela).
 public class Orcamento {
     
+    @Id
+    @SequenceGenerator(name = "seq_orcamento", sequenceName = "seq_orcamento_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_orcamento", strategy = GenerationType.SEQUENCE)  
     private Integer id;
+    
+    @Column(nullable = true, length = 100)
     private String observacoes;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)    
     private Calendar data;
+    
+    @ManyToOne
+    @JoinColumn(name = "cliente_cpf", nullable = false)
     private Cliente cliente;
     
     //associacao
@@ -29,8 +48,21 @@ public class Orcamento {
     @JoinColumn(name = "veiculo_placa", nullable = false)
     private Veiculo veiculo;
     
+    
+    @ManyToMany
+    @JoinTable(name = "tb_orcamento_peca", joinColumns = {@JoinColumn(name = "cliente_cpf")}, //agregacao, vai gerar uma tabela associativa.
+                                       inverseJoinColumns = {@JoinColumn(name = "peca_id")})     
     private List<Peca> peca;
+    
+    
+    @ManyToMany
+    @JoinTable(name = "tb_orcamento_maoobra", joinColumns = {@JoinColumn(name = "cliente_cpf")}, //agregacao, vai gerar uma tabela associativa.
+                                       inverseJoinColumns = {@JoinColumn(name = "peca_id")})     
     private List<MaoObra> maoObra;
+    
+    
+    @Column(nullable = false, precision = 2)
+    private Float valorTotal;
     
     public Orcamento(){
         

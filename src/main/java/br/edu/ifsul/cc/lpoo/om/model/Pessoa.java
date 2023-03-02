@@ -3,12 +3,15 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -25,10 +28,24 @@ public abstract class Pessoa implements Serializable{
     
     @Id
     private String cpf;
+    
+    @Column(nullable = false, length = 300)
     private String nome;
+    
+    @Column(nullable = false, length = 8)
     private String senha;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)    
     private Calendar data_nascimento;
+    
+    @Column(nullable = false, length = 8)
     private String cep;
+    
+    @Column(nullable = false, length = 20)
+    private String numero;
+    
+    @Column(nullable = false, length = 100)    
     private String complemento;
     
     public Pessoa(){

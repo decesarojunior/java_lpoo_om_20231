@@ -3,11 +3,16 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -16,11 +21,23 @@ import javax.persistence.ManyToMany;
 
 @Entity
 @DiscriminatorValue("F")
+@Table(name = "tb_funcionario")
 public class Funcionario extends Pessoa {
     
+    @Column(nullable = false, length = 10)
     private String numero_ctps;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE) 
     private Calendar data_admissao;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE) 
     private Calendar data_demissao;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "cargo_id", nullable = false)    
     private Cargo cargo;
     
     @ManyToMany

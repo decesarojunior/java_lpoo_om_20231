@@ -2,16 +2,38 @@
 package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
- * @author telmo
+ * @author telmo junior
  */
+
+@Entity
+@Table(name = "tb_maoobra")
 public class MaoObra {
     
+    @Id
+    @SequenceGenerator(name = "seq_maoobra", sequenceName = "seq_maoobra_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_maoobra", strategy = GenerationType.SEQUENCE)         
     private Integer id;
+    
+    @Column(nullable = false, length = 200)
     private String descricao;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIME ) 
     private Date tempo_estimado_execucao;
+    
+    @Column(nullable = false, precision = 2)
     private Float valor;
     
     public MaoObra(){

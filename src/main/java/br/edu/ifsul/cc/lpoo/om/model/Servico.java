@@ -3,9 +3,20 @@ package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -18,14 +29,33 @@ import javax.persistence.Table;
 //armazenamento (em tabela).
 public class Servico {
     
+    @Id
+    @SequenceGenerator(name = "seq_servico", sequenceName = "seq_servico_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_servico", strategy = GenerationType.SEQUENCE)  
     private Integer id;
+    
+    @Column(nullable = false, precision = 2)
     private Float valor;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)    
     private Calendar data_inicio;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)    
     private Calendar data_fim;
+    
+    @ManyToOne
+    @JoinColumn(name = "equipe_id", nullable = false)
     private Equipe equipe;
     
-    
+    @ManyToOne
+    @JoinColumn(name = "orcamento_id", nullable = false)
     private Orcamento orcamento;
+    
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)   
     private StatusServico status;
     
     

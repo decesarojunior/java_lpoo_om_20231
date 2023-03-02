@@ -2,16 +2,38 @@
 package br.edu.ifsul.cc.lpoo.om.model;
 
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author telmo
  */
+
+@Entity
+@Table(name = "tb_curso")
 public class Curso {
     
+    @Id
+    @SequenceGenerator(name = "seq_curso", sequenceName = "seq_curso_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_curso", strategy = GenerationType.SEQUENCE) 
     private Integer id;
+    
+    @Column(nullable = false, length = 200)
     private String descricao;
+    
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE) 
     private Calendar dt_conclusao;
+    
+    @Column(nullable = true)
     private Integer cargahoraria;
     
     public Curso(){

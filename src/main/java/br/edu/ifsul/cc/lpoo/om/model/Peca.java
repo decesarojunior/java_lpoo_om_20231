@@ -1,15 +1,37 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  *
  * @author telmo
  */
+
+@Entity
+@Table(name = "tb_peca")
 public class Peca {
     
+    @Id
+    @SequenceGenerator(name = "seq_peca", sequenceName = "seq_peca_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_peca", strategy = GenerationType.SEQUENCE) 
     private Integer id;
+    
+    @Column(nullable = false, length = 200)
     private String nome;
+    
+    @Column(nullable = false, precision = 2)
     private Float valor;
+         
+    @Column(nullable = true, length = 200)
     private String fornecedor;
     
     public Peca(){
