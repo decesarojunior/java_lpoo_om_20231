@@ -1,6 +1,7 @@
 
 package br.edu.ifsul.cc.lpoo.om.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_cargo")
-public class Cargo {
+public class Cargo implements Serializable {
     
     @Id
     @SequenceGenerator(name = "seq_cargo", sequenceName = "seq_cargo_id", allocationSize = 1)
